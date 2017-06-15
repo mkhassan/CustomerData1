@@ -38,7 +38,7 @@ public class Customer {
 	}
 	
 	public Customer(String title, String firstname, String lastname, String city, String state, String email,
-			String position, String company, String customerid, String address,String zipcode) {
+			String position, String company,  String address,String zipcode) {
 		this(firstname, lastname,address);
 		this.title = title;
 		this.city = city;
@@ -47,7 +47,7 @@ public class Customer {
 		this.email = email;
 		this.position = position;
 		this.company = company;
-		this.customerid = customerid;
+		//this.customerid = customerid;
 	}	
 	
 	

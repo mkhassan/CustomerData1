@@ -114,9 +114,44 @@ public class MySQLHelper {
 			String lastname = resultSet.getString("LastName");
 			String address = resultSet.getString("StreetAddress");
 			
+			Customer customer = new Customer(firstname,lastname, address);
+			listCustomer.add(customer);
+			
 		}
 		
+		resultSet.close();
+		stm.close();
+		disconnect();
 		
+		return listCustomer;
+		
+		
+	}
+	
+	public Customer getCustomer(String customerid, String lastname) throws SQLException {
+		Customer customer = null;
+		String sql = "SELECT * FROM customers WHERE CustomerID= ? AND LastName = ?";
+		
+		
+		PreparedStatement stm = dbConnection.prepareStatement(sql);
+		stm.setString(1,  customerid);
+		stm.setString(2, lastname);
+		
+		ResultSet resultSet = stm.executeQuery();
+		
+		if (resultSet.next()) {
+			String fname = resultSet.getString("FirstName");
+			String lname = resultSet.getString("LastName");
+			String address = resultSet.getString("StreetAddress");
+			
+			customer = new Customer(fname, lname, address);
+		}
+		
+		resultSet.close();
+		stm.close();
+		
+		return customer;
+
 	}
 	
 }
